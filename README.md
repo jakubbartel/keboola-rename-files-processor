@@ -1,5 +1,7 @@
 # Keboola Rename Files Processor
 
+[![Build Status](https://travis-ci.org/jakubbartel/keboola-rename-files-processor.svg?branch=master)](https://travis-ci.org/jakubbartel/keboola-rename-files-processor)
+
 Rename files base on given regular expressions.
 
 ## Functionality
