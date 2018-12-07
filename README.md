@@ -2,20 +2,20 @@
 
 [![Build Status](https://travis-ci.org/jakubbartel/keboola-rename-files-processor.svg?branch=master)](https://travis-ci.org/jakubbartel/keboola-rename-files-processor)
 
-Rename files base on given regular expressions.
+Rename files based on the given regular expressions.
 
-## Functionality
+## Usage
 
-Processor takes all files in input directory `/data/in/files` and applies configured regular expressions to generate
+The processor takes all files in the input directory `/data/in/files` and uses the configured regular expressions to generate
 new file name.
 
-All files that does not match with the pattern's regular expression are left with actual name.
+All files that do not match with the regular expression pattern are moved to the output with their current name.
 
-The pattern is applied to the filename (relative file path more precisely) after `/data/in/files`, e.g. file
-`/data/in/files/report.csv` is renamed from `report.csv`, file `/data/in/files/dir/report.csv` is renamed
-from `dir/report.csv`.
+The pattern is applied to relative file path after `/data/in/files`. e.g.:
+- for the file `/data/in/files/report.csv`, the pattern is applied to `report.csv`,
+- for the file `/data/in/files/dir/report.csv`, the pattern is applied to `dir/report.csv`.
 
-No files processing order is guaranteed and files with duplicated names are going to replace each other.
+No file processing order is guaranteed and files with duplicated names are going to replace each other.
 
 ## Configuration
 
@@ -32,5 +32,4 @@ Example processor configuration:
 }
 ```
 
-Renames all files in `/data/in/files` that have a number in file name ending, e.g. `/data/in/files/myreport-123.csv`
-to `/data/out/files/eshops/123/myreport.csv`.
+The configuration renames all files in `/data/in/files` that have a file name ending with number to subdirectory with that number. e.g. file `/data/in/files/myreport-123.csv` will be renamed to `/data/out/files/eshops/123/myreport.csv`.
