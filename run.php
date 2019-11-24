@@ -2,12 +2,13 @@
 
 require __DIR__ . '/vendor/autoload.php';
 
+use Keboola\RenameFilesProcessor\Exception\UserException;
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 
 try {
     $component = new \Keboola\RenameFilesProcessor\Component();
     $component->run();
-} catch(InvalidConfigurationException $e) {
+} catch(UserException | InvalidConfigurationException $e) {
     error_log($e->getMessage());
 
     exit(1);

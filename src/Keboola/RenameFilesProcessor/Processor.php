@@ -2,6 +2,7 @@
 
 namespace Keboola\RenameFilesProcessor;
 
+use Keboola\RenameFilesProcessor\Exception;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Filesystem\Filesystem;
 
@@ -23,11 +24,26 @@ class Processor
      *
      * @param string $pattern
      * @param string $replacement
+     * @throws Exception\InvalidPatternException
      */
     public function __construct(string $pattern, string $replacement)
     {
         $this->pattern = $pattern;
         $this->replacement = $replacement;
+
+        $this->validatePattern();
+    }
+
+    /**
+     * @throws Exception\InvalidPatternException
+     */
+    private function validatePattern(): void
+    {
+        try {
+            $this->rename('test');
+        } catch(\ErrorException $e) {
+            throw new Exception\InvalidPatternException(sprintf('Invalid rename pattern: %s', $e->getMessage()), 0, $e);
+        }
     }
 
     /**

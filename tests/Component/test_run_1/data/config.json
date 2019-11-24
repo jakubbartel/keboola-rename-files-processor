@@ -1,0 +1,10 @@
+{
+  "storage": {
+    "input": {},
+    "output": {}
+  },
+  "parameters": {
+      "pattern": "/^(.+)-(\\d+)\\.csv$/^",
+      "replacement": "/eshops/$2/$1.csv"
+  }
+}
